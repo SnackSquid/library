@@ -45,19 +45,27 @@ button:hover {
 
 label {
     padding: 5px;
+    font-weight: 700;
 }
 
 input {
     display: flex;
+    width: 88%;
     border: none;
     border-bottom: 1px solid var(--darkorange);
     border-radius: 10px;
     padding: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     accent-color: var(--green);
 }
 
 input:focus {
     outline: var(--green) solid 2px;
+}
+
+input[type='radio'] {
+    font-weight: 400px;
 }
 
 hr {
@@ -70,12 +78,12 @@ hr {
 form {
     display: grid;
     justify-content: center;
-    grid-template-rows: 1fr 50px;
     grid-template-columns: repeat(2, 1fr);
 }
 
 form > div > h2 {
     font-family: Pacifico;
+    text-align: center;
     box-sizing: border-box;
     margin-bottom: 30px;
     grid-column: 1 / 3;
@@ -111,12 +119,11 @@ form > div {
     top: 25%;
     left: 35%;
     right: 35%;
-    height: 370px;
+    height: 450px;
+    width: 250px;
     z-index: 10;
     width: minmax(100px, 300px)
 }
-
-
 
 .bookGrid {
     display: grid;
@@ -182,6 +189,12 @@ form > div {
     font-size: 30px;
     font-weight: 700;
     color: var(--black);
+}
+
+#closeInput {
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: 15px;
 }
 
 .close:hover, #closeInput:hover {

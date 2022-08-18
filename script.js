@@ -71,6 +71,18 @@ function makeCard() {
     }
 }
 
+function makeAddCard() {
+    const grid = document.querySelector('.bookGrid');
+    const div = document.createElement('div');
+    const link = document.createElement('a');
+
+    link.textContent = 'Click to Add New Book'
+    div.classList = 'card';
+    link.classList = 'link';
+    div.appendChild(link);
+    grid.appendChild(div);
+}
+
 function addBookToLibrary() {
     // select the entered values from the input fields
     const title = document.querySelector('#title').value;
@@ -103,6 +115,21 @@ function removeBookFromLibrary(click) {
     card.remove()
 }
 
+function hideInput(click) {
+    click.preventDefault();
+    const inputDiv = document.querySelector('.inputWrapper');
+    inputDiv.style.display = 'none';
+    makeAddCard();
+}
+
+function showInput(click) {
+    click.preventDefault();
+    const inputDiv = document.querySelector('.inputWrapper');
+    inputDiv.style.display = 'inline';
+    const card = this.parentElement;
+    card.remove()
+}
+
 makeCard();
 const submit = document.querySelector('#submit');
 submit.addEventListener('click', addBookToLibrary);
@@ -110,3 +137,10 @@ submit.addEventListener('click', addBookToLibrary);
 const closeBook = document.querySelectorAll('.close');
 closeBook.forEach(button => button.addEventListener('click', removeBookFromLibrary, {capture: false}));
 
+const closeInput = document.querySelector('#closeInput');
+closeInput.addEventListener('click', hideInput);
+
+const openInput = document.querySelector('.link');
+openInput.addEventListener('click', showInput);
+
+makeCard();
