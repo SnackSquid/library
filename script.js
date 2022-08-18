@@ -52,7 +52,6 @@ function makeCard() {
             div.appendChild(read);
             grid.appendChild(div);
         }
-        
         bookCount++;
     }
 }
