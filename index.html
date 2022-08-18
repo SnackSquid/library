@@ -9,36 +9,44 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="header"></div>
-    <div class="inputDiv">
-        <form>
-            <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title">
-            </div>
-            <div>
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author">
-            </div>
-            <div>
-                <label for="pages">Pages</label>
-                <input type="number" name="pages" id="pages">
-            </div>
-            <div>
-                <label for="read">Have you read this?</label>
-                <div id="radio">
-                    <label for="readYes">Yes</label>
-                    <input type="radio" name="read" id="readYes" value="yes">
-                    <label for="readNo">No</label>
-                    <input type="radio" name="read" id="readNo" value="no">
+    <div class="header">
+        <h1>Libraryary</h1>
+    </div>
+    <div class="inputWrapper">
+        <div class="inputDiv">
+            <form>
+                <div>
+                    <h2>Enter your new book here</h2>
                 </div>
-            </div>
-        </form>
-        <button id="submit">Submit</button>
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div>
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author">
+                </div>
+                <div>
+                    <label for="pages">Pages</label>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <div>
+                    <label for="read">Have you read this?</label>
+                    <div id="radio">
+                        <label for="readYes">Yes</label>
+                        <input type="radio" name="read" id="readYes" value="yes">
+                        <label for="readNo">No</label>
+                        <input type="radio" name="read" id="readNo" value="no">
+                    </div>
+                </div>
+            </form>
+            <button id="submit">Submit</button>
+        </div>
     </div>
-    <div class="bookGrid">
+    
+    <div class="bookGrid"></div>
         
-    </div>
+</div>
     
 </body>
 </html>
