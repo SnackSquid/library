@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+.bookGrid {
+    display: grid;
+    background-color: aliceblue;
+    height: 100vh;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.book {
+
+}
