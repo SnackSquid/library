@@ -35,19 +35,21 @@ function makeCard() {
     for (let i = bookCount; i < bookArray.length; i++) {
         const div = document.createElement('div');
         const title = document.createElement('h4');
-        const author = document.createElement('h4');
+        const author = document.createElement('h5');
+        const divider = document.createElement('hr');
         const pages = document.createElement('p');
         const read = document.createElement('p');
 
         for (let j = 0; j < 3; j++) {
             title.textContent = bookArray[i].title;
-            author.textContent = bookArray[i].author;
-            pages.textContent = bookArray[i].pages;
+            author.textContent = `by ${bookArray[i].author}`;
+            pages.textContent = `${bookArray[i].pages} pages long`;
             read.textContent = bookArray[i].read;
 
             div.classList = 'card';
             div.appendChild(title);
             div.appendChild(author);
+            div.appendChild(divider);
             div.appendChild(pages);
             div.appendChild(read);
             grid.appendChild(div);
