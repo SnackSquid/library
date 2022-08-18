@@ -29,7 +29,8 @@ function Book(title, author, pages, read) {
 }
 
 function makeSlider() {
-
+    const label = document.createElement('label').classList('');
+    const input = document.createElement('input').type('checkbox')
 }
 
 function makeCard() {
@@ -71,19 +72,22 @@ function makeCard() {
     }
 }
 
-function makeAddCard() {
+function makeAddButtonCard() {
     const grid = document.querySelector('.bookGrid');
     const div = document.createElement('div');
-    const link = document.createElement('a');
+    const button = document.createElement('button');
 
-    link.textContent = 'Click to Add New Book'
+    button.textContent = 'Click to Add New Book'
     div.classList = 'card';
-    link.classList = 'link';
-    div.appendChild(link);
+    button.id = 'addBook';
+    div.appendChild(button);
     grid.appendChild(div);
+    const openInput = document.querySelector('#addBook');
+    openInput.addEventListener('click', showInput);
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(click) {
+    click.preventDefault();
     // select the entered values from the input fields
     const title = document.querySelector('#title').value;
     const author = document.querySelector('#author').value;
@@ -96,6 +100,9 @@ function addBookToLibrary() {
     bookArray.push(newBook);
     // make the card and fill the values
     makeCard();
+    // add event listener to new book card
+    const closeBook = document.querySelectorAll('.close');
+    closeBook.forEach(button => button.addEventListener('click', removeBookFromLibrary, {capture: false}));
     // reset the form
     form.reset();
 }
@@ -119,13 +126,14 @@ function hideInput(click) {
     click.preventDefault();
     const inputDiv = document.querySelector('.inputWrapper');
     inputDiv.style.display = 'none';
-    makeAddCard();
+    makeAddButtonCard();
 }
 
 function showInput(click) {
     click.preventDefault();
+    click.stopPropagation(); 
     const inputDiv = document.querySelector('.inputWrapper');
-    inputDiv.style.display = 'inline';
+    inputDiv.style.display = 'block';
     const card = this.parentElement;
     card.remove()
 }
@@ -140,7 +148,6 @@ closeBook.forEach(button => button.addEventListener('click', removeBookFromLibra
 const closeInput = document.querySelector('#closeInput');
 closeInput.addEventListener('click', hideInput);
 
-const openInput = document.querySelector('.link');
-openInput.addEventListener('click', showInput);
+
 
 makeCard();
