@@ -29,8 +29,23 @@ function Book(title, author, pages, read) {
 }
 
 function makeSlider() {
-    const label = document.createElement('label').classList('');
-    const input = document.createElement('input').type('checkbox')
+    const div = document.createElement('div');
+    const title = document.createElement('p')
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+
+    label.for = 'switch';
+    title.textContent = 'Read?'
+    input.type = 'checkbox';
+    input.id = 'switch';
+    input.name = 'switch';
+    div.classList.add('toggle')
+
+    div.appendChild(title);
+    div.appendChild(label);
+    div.appendChild(input);
+
+    return div;
 }
 
 function makeCard() {
@@ -46,6 +61,7 @@ function makeCard() {
         const divider = document.createElement('hr');
         const pages = document.createElement('p');
         const read = document.createElement('p');
+        const slider = makeSlider();
         // loop through each element of the book, adding the information to the
         // created book card
         for (let j = 0; j < 3; j++) {
@@ -64,6 +80,7 @@ function makeCard() {
             div.appendChild(divider);
             div.appendChild(pages);
             div.appendChild(read);
+            div.appendChild(slider);
             grid.appendChild(div);
         }
         
@@ -139,6 +156,7 @@ function showInput(click) {
 }
 
 makeCard();
+
 const submit = document.querySelector('#submit');
 submit.addEventListener('click', addBookToLibrary);
 
