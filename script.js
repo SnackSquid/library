@@ -33,17 +33,19 @@ function makeSlider() {
     const title = document.createElement('p')
     const label = document.createElement('label');
     const input = document.createElement('input');
+    const span = document.createElement('span');
 
-    label.for = 'switch';
+    label.classList.add('switch');
     title.textContent = 'Read?'
+    span.classList.add('slider');
     input.type = 'checkbox';
     input.id = 'switch';
-    input.name = 'switch';
+    
     div.classList.add('toggle')
 
-    div.appendChild(title);
+    label.appendChild(input);
+    label.appendChild(span);
     div.appendChild(label);
-    div.appendChild(input);
 
     return div;
 }
