@@ -3,21 +3,21 @@ let bookArray = [
         title: 'The Hobbit',
         author: 'JRR Tolkein',
         pages: 304,
-        read: 'true',
+        read: true,
         index: 0
     },
     {
         title: 'The Hobbit2',
         author: 'JRR Tolkein',
         pages: 304,
-        read: 'true',
+        read: true,
         index: 1
     },
     {
         title: 'The Hobbit3',
         author: 'JRR Tolkein',
         pages: 304,
-        read: 'false',
+        read: true,
         index: 2
     }
 ];
@@ -29,6 +29,33 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
+}
+
+Book.prototype.changeRead = function() {
+    
+    if (this.read === true) this.read = false;
+    else this.read = true;
+}
+
+function makeSlider() {
+    const div = document.createElement('div');
+    const title = document.createElement('p')
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    const span = document.createElement('span');
+
+    label.classList.add('switch');
+    title.textContent = 'Read?'
+    span.classList.add('slider');
+    input.type = 'checkbox';
+    
+    div.classList.add('toggle')
+
+    label.appendChild(input);
+    label.appendChild(span);
+    div.appendChild(label);
+
+    return input;
 }
 
 function makeCard() {
@@ -46,27 +73,24 @@ function makeCard() {
         const divider = document.createElement('hr');
         const pages = document.createElement('p');
         const read = document.createElement('p');
-        
-        const slideButton = makeSlider();
-        slideButton.addEventListener('click', slider);
-
         console.log(slider)
+        const slider = makeSlider();
         // loop through each element of the book, adding the information to the
         // created book card
         for (let j = 0; j < 3; j++) {
             // get each field of the book object and create a close button
             title.textContent = book.title;
-            author.textContent = `by ${book.author}`;
+            author.textContent = `by ${bookauthor}`;
             pages.textContent = `${book.pages} pages long`;
-            read.textContent = 'Read?';
+            read.textContent = book.read;
             closeBook.innerHTML = '&times;';
 
-            if (book.read === 'true') {
-                slideButton.value = 'true';
-                slideButton.checked = true;
+            if (book.read === true) {
+                slider.value = 'true';
+                slider.checked = true;
             }
             else {
-                slideButton.value = 'false';
+                slider.value = 'false';
             }
 
             // add the card to the DOM
@@ -78,13 +102,28 @@ function makeCard() {
             div.appendChild(divider);
             div.appendChild(pages);
             div.appendChild(read);
-            div.appendChild(slideButton);
+            div.appendChild(slider);
+
             grid.appendChild(div);
         }
         
         // iterate the book count to make sure we're not rendering the same books every time
         bookCount++;
     }
+}
+
+function makeAddButtonCard() {
+    const grid = document.querySelector('.bookGrid');
+    const div = document.createElement('div');
+    const button = document.createElement('button');
+
+    button.textContent = 'Click to Add New Book'
+    div.classList = 'card';
+    button.id = 'addBook';
+    div.appendChild(button);
+    grid.appendChild(div);
+    const openInput = document.querySelector('#addBook');
+    openInput.addEventListener('click', showInput);
 }
 
 function addBookToLibrary(click) {
@@ -108,39 +147,6 @@ function addBookToLibrary(click) {
     form.reset();
 }
 
-function makeAddButtonCard() {
-    const grid = document.querySelector('.bookGrid');
-    const div = document.createElement('div');
-    const button = document.createElement('button');
-
-    button.textContent = 'Click to Add New Book'
-    div.classList = 'card';
-    button.id = 'addBook';
-    div.appendChild(button);
-    grid.appendChild(div);
-    const openInput = document.querySelector('#addBook');
-    openInput.addEventListener('click', showInput);
-}
-
-
-function makeSlider() {
-    const div = document.createElement('div');
-    const title = document.createElement('p')
-    const label = document.createElement('label');
-    const input = document.createElement('input');
-    const span = document.createElement('span');
-
-    title.textContent = 'Read?'
-    input.type = 'checkbox';
-    input.classList.add('switch')
-    
-    div.classList.add('toggle')
-
-    label.appendChild(input);
-    div.appendChild(label);
-
-    return input;
-}
 function removeBookFromLibrary(click) {
     // stop bubbling
     click.stopPropagation();
@@ -172,21 +178,21 @@ function showInput(click) {
     card.remove()
 }
 
-function slider() {
-    const bookGrid = document.querySelector('.bookGrid');
-    // select the card div
-    const card = this.parentElement;
-    const checkbox = this;
-    // get the current card index within the grid element
-    const cardNumber = Array.from(bookGrid.children).indexOf(card);
-    let currentBook = bookArray[cardNumber];
+function slider(click) {
     
-    currentBook.read = checkbox.checked;
+    // select the card div
+    const toggle = this.parentElement;
+    const card = toggle.parentElement;
+    const checkbox = document.querySelector('.switch')
+    // get the current card index within the grid element
+    const cardNumber = Array.from(card.parentElement.children).indexOf(card);
+    const currentBook = bookArray[cardNumber];
+    // callfunction
+    currentBook.changeRead;
     console.log(currentBook.read)
 }
 
 makeCard();
-makeAddButtonCard();
 
 const submit = document.querySelector('#submit');
 submit.addEventListener('click', addBookToLibrary);
